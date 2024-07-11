@@ -1,4 +1,4 @@
-name: pure-hanwckf-360t7
+name: pure-hanwckf-wr30u
 
 on:
   repository_dispatch:
@@ -100,8 +100,8 @@ jobs:
         rm -rf *kernel*
         rm -rf *.manifest
         rm -rf sha256sums
-        mv *sysupgrade.bin ${{ env.FIRMWARE_VERSION }}-ImmortalWrt-360T7-108M-sysupgrade.bin
-        mv *factory.bin ${{ env.FIRMWARE_VERSION }}-ImmortalWrt-360T7-108M-factory.bin
+        # mv *sysupgrade.bin ${{ env.FIRMWARE_VERSION }}-ImmortalWrt-360T7-108M-sysupgrade.bin
+        # mv *factory.bin ${{ env.FIRMWARE_VERSION }}-ImmortalWrt-360T7-108M-factory.bin
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "status=success" >> $GITHUB_OUTPUT
         
@@ -109,7 +109,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: ${{ env.FIRMWARE_VERSION }}-OpenWrt-360T7
+        name: ${{ env.FIRMWARE_VERSION }}-OpenWrt-WR30U
         path: ${{ env.FIRMWARE }}
         
     - name: 创建release标签
@@ -117,8 +117,8 @@ jobs:
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       run: |
          time=$(date +%Y.%m.%d)
-         release_tag="360T7-hanwckf-ImmortalWrt-$time"
-         release_name="360T7-hanwckf-ImmortalWrt-$time"
+         release_tag="WR30U-hanwckf-ImmortalWrt-$time"
+         release_name="WR30U-hanwckf-ImmortalWrt-$time"
          echo "跟进上游变更
          默认网关：192.168.77.1
          登录密码：--
